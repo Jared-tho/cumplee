@@ -69,7 +69,19 @@
             <div class="card-message" id="cardMessage" aria-live="polite" hidden>
               <div class="message-topline">
                 <span>FELIZ CUMPLEAÑOS / 29.09</span>
-                <i data-lucide="heart" aria-hidden="true"></i>
+                <div class="message-tools">
+                  <button
+                    class="music-toggle"
+                    id="musicToggle"
+                    type="button"
+                    aria-label="Reproducir música"
+                    aria-pressed="false"
+                    title="Reproducir música"
+                  >
+                    <i data-lucide="play" aria-hidden="true"></i>
+                  </button>
+                  <i data-lucide="heart" aria-hidden="true"></i>
+                </div>
               </div>
               <div class="message-content">
                 <p class="message-eyebrow">Hoy celebramos</p>
@@ -124,6 +136,12 @@
 
     <div class="toast" id="toast" role="status" aria-live="polite"></div>
     <canvas id="confettiCanvas" aria-hidden="true"></canvas>
+    <audio
+      id="birthdayAudio"
+      src="audio/cumpleanos.mp3"
+      preload="none"
+      aria-hidden="true"
+    ></audio>
     <noscript>Activa JavaScript para abrir tu tarjeta de cumpleaños.</noscript>
     <script src="script.js"></script>
   </body>

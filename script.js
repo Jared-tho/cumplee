@@ -3,6 +3,8 @@ const openCard = document.querySelector("#openCard");
 const cardMessage = document.querySelector("#cardMessage");
 const cardHint = document.querySelector("#cardHint");
 const resetCard = document.querySelector("#resetCard");
+const musicToggle = document.querySelector("#musicToggle");
+const birthdayAudio = document.querySelector("#birthdayAudio");
 const toast = document.querySelector("#toast");
 const canvas = document.querySelector("#confettiCanvas");
 const context = canvas.getContext("2d");
@@ -27,6 +29,39 @@ function showToast(message) {
   toastTimer = window.setTimeout(() => {
     toast.classList.remove("is-visible");
   }, 2600);
+}
+
+function updateMusicControl(isPlaying) {
+  musicToggle.setAttribute("aria-pressed", String(isPlaying));
+  musicToggle.setAttribute("aria-label", isPlaying ? "Pausar música" : "Reproducir música");
+  musicToggle.setAttribute("title", isPlaying ? "Pausar música" : "Reproducir música");
+  const icon = musicToggle.querySelector("svg");
+  if (icon) {
+    icon.setAttribute("data-lucide", isPlaying ? "pause" : "play");
+    refreshIcons();
+  }
+}
+
+function playBirthdayMusic({ restart = false } = {}) {
+  if (restart) {
+    birthdayAudio.currentTime = 0;
+  }
+
+  const playback = birthdayAudio.play();
+  if (playback && typeof playback.catch === "function") {
+    playback.catch(() => {
+      musicToggle.classList.add("is-unavailable");
+      updateMusicControl(false);
+      showToast("Agrega audio/cumpleanos.mp3 para escuchar música");
+    });
+  }
+  updateMusicControl(true);
+}
+
+function stopBirthdayMusic() {
+  birthdayAudio.pause();
+  birthdayAudio.currentTime = 0;
+  updateMusicControl(false);
 }
 
 function resizeCanvas() {
@@ -92,6 +127,7 @@ function openBirthdayCard() {
   cardHint.hidden = true;
   resetCard.hidden = false;
   createConfetti();
+  playBirthdayMusic({ restart: true });
   showToast("Feliz cumpleaños, Majo ✦");
 }
 
@@ -100,6 +136,7 @@ function closeBirthdayCard() {
   openCard.setAttribute("aria-expanded", "false");
   cardHint.hidden = false;
   resetCard.hidden = true;
+  stopBirthdayMusic();
   openCard.focus();
   window.setTimeout(() => {
     cardMessage.hidden = true;
@@ -109,11 +146,20 @@ function closeBirthdayCard() {
 openCard.addEventListener("click", openBirthdayCard);
 resetCard.addEventListener("click", closeBirthdayCard);
 resetCard.addEventListener("pointerup", closeBirthdayCard);
+musicToggle.addEventListener("click", () => {
+  if (birthdayAudio.paused) {
+    playBirthdayMusic();
+  } else {
+    birthdayAudio.pause();
+    updateMusicControl(false);
+  }
+});
 document.addEventListener("click", (event) => {
   if (event.target.closest("#resetCard")) {
     closeBirthdayCard();
   }
 });
+birthdayAudio.addEventListener("ended", () => updateMusicControl(false));
 window.addEventListener("resize", resizeCanvas);
 
 resizeCanvas();

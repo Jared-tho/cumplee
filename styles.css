@@ -366,11 +366,49 @@ button:focus-visible {
   font-size: 0.53rem;
 }
 
-.message-topline svg {
+.message-tools {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.message-tools > svg {
   width: 1rem;
   height: 1rem;
   color: var(--coral);
   fill: rgba(255, 127, 112, 0.28);
+}
+
+.music-toggle {
+  display: grid;
+  width: 1.65rem;
+  height: 1.65rem;
+  place-items: center;
+  color: var(--night);
+  border: 0;
+  border-radius: 50%;
+  background: var(--mint);
+  transition: transform 180ms ease, background 180ms ease;
+}
+
+.music-toggle:hover {
+  background: var(--yellow);
+  transform: scale(1.08);
+}
+
+.music-toggle[aria-pressed="true"] {
+  color: var(--paper);
+  background: var(--coral);
+}
+
+.music-toggle svg {
+  width: 0.75rem;
+  height: 0.75rem;
+  fill: currentColor;
+}
+
+.music-toggle.is-unavailable {
+  opacity: 0.55;
 }
 
 .message-content {
