@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#080b14" />
+    <meta
+      name="description"
+      content="Una tarjeta de cumpleaños especial para María José."
+    />
+    <title>Feliz cumpleaños, Majo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600;1,700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="birthday-scene">
+      <div class="grain" aria-hidden="true"></div>
+      <div class="stars" aria-hidden="true"></div>
+      <div class="glow glow-one" aria-hidden="true"></div>
+      <div class="glow glow-two" aria-hidden="true"></div>
+
+      <div class="balloon-field" aria-hidden="true">
+        <div class="balloon balloon-coral balloon-one"><span></span></div>
+        <div class="balloon balloon-yellow balloon-two"><span></span></div>
+        <div class="balloon balloon-lilac balloon-three"><span></span></div>
+        <div class="balloon balloon-blue balloon-four"><span></span></div>
+        <div class="balloon balloon-pink balloon-five"><span></span></div>
+        <div class="balloon balloon-yellow balloon-six"><span></span></div>
+        <div class="balloon balloon-blue balloon-seven"><span></span></div>
+        <div class="balloon balloon-coral balloon-eight"><span></span></div>
+      </div>
+
+      <header class="scene-header">
+        <span class="brand-mark">MAJO <b>✦</b></span>
+        <span class="header-note">29 de septiembre</span>
+      </header>
+
+      <section class="card-area" aria-labelledby="card-title">
+        <p class="kicker"><i data-lucide="calendar-heart" aria-hidden="true"></i> 29 de septiembre</p>
+
+        <div class="card-stage">
+          <div class="birthday-card" id="birthdayCard">
+            <button
+              class="card-cover"
+              id="openCard"
+              type="button"
+              aria-expanded="false"
+              aria-controls="cardMessage"
+            >
+              <span class="cover-corner cover-corner-top">PARA TI</span>
+              <span class="cover-corner cover-corner-bottom">MAJO / 29.09</span>
+              <span class="cover-spark spark-left">✦</span>
+              <span class="cover-spark spark-right">✧</span>
+              <span class="cover-icon"><i data-lucide="gift" aria-hidden="true"></i></span>
+              <span class="cover-title">Para<br /><em>Majo</em></span>
+              <span class="cover-divider"></span>
+              <span class="cover-prompt">
+                <span>Toca para abrir</span>
+                <i data-lucide="arrow-down" aria-hidden="true"></i>
+              </span>
+            </button>
+
+            <div class="card-message" id="cardMessage" aria-live="polite" hidden>
+              <div class="message-topline">
+                <span>FELIZ CUMPLEAÑOS / 29.09</span>
+                <i data-lucide="heart" aria-hidden="true"></i>
+              </div>
+              <div class="message-content">
+                <p class="message-eyebrow">Hoy celebramos</p>
+                <h1 id="card-title">¡Feliz cumpleaños,<br /><em>María José!</em></h1>
+                <p class="message-copy">
+                  Que este nuevo año te regale días bonitos, risas que duren
+                  mucho y sueños que poco a poco se vuelvan realidad. Eres una
+                  gran persona, muy amable y con una forma de expresarte única.
+                </p>
+                <p class="message-copy message-copy-soft">
+                  Y para cada problema que tengas, no dudes en hablarme. Nunca
+                  te faltará alguien dispuesto a escucharte y acompañarte.
+                </p>
+                <div class="music-detail">
+                  <i data-lucide="music-2" aria-hidden="true"></i>
+                  <span>
+                    <strong>GRANDES GUSTOS MUSICALES</strong>
+                    <small>play · feel · repeat</small>
+                  </span>
+                  <i data-lucide="equalizer" aria-hidden="true"></i>
+                </div>
+                <div class="cake-illustration" aria-hidden="true">
+                  <span class="candle-flame"></span>
+                  <span class="candle"></span>
+                  <span class="cake-icing"></span>
+                  <span class="cake-body cake-body-top"></span>
+                  <span class="cake-body cake-body-bottom"></span>
+                  <span class="cake-plate"></span>
+                </div>
+              </div>
+              <div class="message-footer">
+                <span>De parte de Jaredto :)</span>
+                <span class="message-stars">♫ ✦ ♫</span>
+              </div>
+              <button class="reset-button" id="resetCard" type="button" hidden>
+                <i data-lucide="rotate-ccw" aria-hidden="true"></i>
+                Volver a cerrar
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <p class="hint" id="cardHint">Hay una felicitación esperando dentro</p>
+      </section>
+
+      <footer class="scene-footer">
+        <span>Que suene bonito este nuevo año</span>
+        <span class="footer-line"></span>
+        <span>29.09</span>
+      </footer>
+    </main>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <canvas id="confettiCanvas" aria-hidden="true"></canvas>
+    <noscript>Activa JavaScript para abrir tu tarjeta de cumpleaños.</noscript>
+    <script src="script.js"></script>
+  </body>
+</html>
